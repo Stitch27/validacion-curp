@@ -32,7 +32,6 @@
         <appender-ref ref="FILE-ROLLING-IDENTIFICACION"/>
     </logger>
     
-    
     <property name="HOME_LOG_PROCESAARCHIVO" value="validadorcurp/logs/procesaarchivo.log"/>
     <appender name="FILE-ROLLING-PROCESAARCHIVO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${HOME_LOG_PROCESAARCHIVO}</file>
@@ -48,7 +47,6 @@
     <logger name="com.fincomun.procesaarchivo" level="debug" additivity="true">
         <appender-ref ref="FILE-ROLLING-PROCESAARCHIVO"/>
     </logger>
-    
     
     <root level="debug"/>
 
