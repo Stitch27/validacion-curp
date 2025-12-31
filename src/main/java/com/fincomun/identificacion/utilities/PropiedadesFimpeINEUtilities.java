@@ -62,10 +62,4 @@ public class PropiedadesFimpeINEUtilities {
 
     public static final String SOLICITUD_IDENTIFICACION = ArchivoPropiedadesUtilities.propiedad("valor.version.identificacion.solicitud");
 
-    public static final String TIPO_FLUJO_IDENTIFICACION = ArchivoPropiedadesUtilities.propiedad("valor.tipo.flujo.identificaciones");
-
-    public static final String MODALIDAD_IDENTIFICACION = ArchivoPropiedadesUtilities.propiedad("valor.modalidad.identificaciones");
-
-    public static final String PRUEBA_VIDA_IDENTIFICACION = ArchivoPropiedadesUtilities.propiedad("valor.prueba.vida.identificaciones");
-
 }

@@ -237,14 +237,14 @@ public class ProcedFimpeINEComponent extends ConexionFimpeINEUtilities {
 
     public Integer registrar_solicitud(String nombre_portal, Integer identificador_portal, String cnombre, String apaterno,
             String amaterno, String reconocimiento, String aregistro, String aemision, String cclave, String nemision, String celector, String cidentificador,
-            Integer bidentificador, String rostro1) {
+            Integer bidentificador) {
 
         CallableStatement declaracion = null;
         Connection conexion = abrir_conexion();
 
         if (conexion != null) {
 
-            String consulta = "BEGIN " + PropiedadesFimpeINEUtilities.PAQUETE_PROCEDIMIENTOS + "." + PropiedadesFimpeINEUtilities.PROCEDIMIENTO_REGISTRARSOLICITUD + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); END;";
+            String consulta = "BEGIN " + PropiedadesFimpeINEUtilities.PAQUETE_PROCEDIMIENTOS + "." + PropiedadesFimpeINEUtilities.PROCEDIMIENTO_REGISTRARSOLICITUD + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); END;";
 
             try {
 
@@ -263,13 +263,12 @@ public class ProcedFimpeINEComponent extends ConexionFimpeINEUtilities {
                 declaracion.setString(11, celector);
                 declaracion.setString(12, cidentificador);
                 declaracion.setInt(13, bidentificador);
-                declaracion.setString(14, rostro1);
+                declaracion.registerOutParameter(14, OracleTypes.NUMBER);
                 declaracion.registerOutParameter(15, OracleTypes.NUMBER);
-                declaracion.registerOutParameter(16, OracleTypes.NUMBER);
 
                 declaracion.execute();
 
-                Integer resultado = declaracion.getInt(16);
+                Integer resultado = declaracion.getInt(15);
 
                 cerrar_conexion(declaracion, conexion);
 

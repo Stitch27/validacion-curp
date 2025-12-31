@@ -28,10 +28,10 @@ import com.fincomun.identificacion.utilities.PropiedadesFimpeINEUtilities;
 public class FimpeINEService {
 
     @Autowired
-    private ProcedFimpeINEComponent componente;
+    private FimpeINEUtilities utilidades;
 
     @Autowired
-    private FimpeINEUtilities utilidades;
+    private ProcedFimpeINEComponent componente;
 
     public ResponseEntity<Object> servicio(RequestIdentificacionModel peticion) {
 
@@ -221,7 +221,7 @@ public class FimpeINEService {
 
         Integer bitacora;
 
-        if (validar_usuario != 0 && validar_usuario != 13) {
+        if (validar_usuario != 0) {
 
             switch (validar_usuario) {
                 case 1:
@@ -233,7 +233,7 @@ public class FimpeINEService {
 
                     componente.registrar_solicitud(peticion.getDatos_portal().getNombre().trim(),
                             Integer.valueOf(peticion.getDatos_portal().getIdentificador().trim()),
-                            " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", bitacora, " ");
+                            " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", bitacora);
 
                     break;
                 case 2:
@@ -245,7 +245,7 @@ public class FimpeINEService {
 
                     componente.registrar_solicitud(peticion.getDatos_portal().getNombre().trim(),
                             Integer.valueOf(peticion.getDatos_portal().getIdentificador().trim()),
-                            " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", bitacora, " ");
+                            " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", bitacora);
 
                     break;
                 case 3:
@@ -257,7 +257,7 @@ public class FimpeINEService {
 
                     componente.registrar_solicitud(peticion.getDatos_portal().getNombre().trim(),
                             Integer.valueOf(peticion.getDatos_portal().getIdentificador().trim()),
-                            peticion.getDatos_cliente().getNombre().trim(), " ", " ", " ", " ", " ", " ", " ", " ", " ", bitacora, " ");
+                            peticion.getDatos_cliente().getNombre().trim(), " ", " ", " ", " ", " ", " ", " ", " ", " ", bitacora);
 
                     break;
                 case 4:
@@ -270,7 +270,7 @@ public class FimpeINEService {
                     componente.registrar_solicitud(peticion.getDatos_portal().getNombre().trim(),
                             Integer.valueOf(peticion.getDatos_portal().getIdentificador().trim()),
                             peticion.getDatos_cliente().getNombre().trim(), peticion.getDatos_cliente().getApellido_paterno().trim(), " ", " ", " ", " ",
-                            " ", " ", " ", " ", bitacora, " ");
+                            " ", " ", " ", " ", bitacora);
                     break;
                 case 5:
                     resultado.put("codigo", ConstantesFimpeINEUtilities.IDENTIFICACION_CODIGO_RECONOCIMIENTO_OPTICO);
@@ -282,7 +282,7 @@ public class FimpeINEService {
                     componente.registrar_solicitud(peticion.getDatos_portal().getNombre().trim(),
                             Integer.valueOf(peticion.getDatos_portal().getIdentificador().trim()),
                             peticion.getDatos_cliente().getNombre().trim(), peticion.getDatos_cliente().getApellido_paterno().trim(),
-                            peticion.getDatos_cliente().getApellido_materno().trim(), " ", " ", " ", " ", " ", " ", " ", bitacora, " ");
+                            peticion.getDatos_cliente().getApellido_materno().trim(), " ", " ", " ", " ", " ", " ", " ", bitacora);
                     break;
                 case 6:
                     resultado.put("codigo", ConstantesFimpeINEUtilities.IDENTIFICACION_CODIGO_A_REGISTRO);
@@ -295,7 +295,7 @@ public class FimpeINEService {
                             Integer.valueOf(peticion.getDatos_portal().getIdentificador().trim()),
                             peticion.getDatos_cliente().getNombre().trim(), peticion.getDatos_cliente().getApellido_paterno().trim(),
                             peticion.getDatos_cliente().getApellido_materno().trim(), peticion.getDatos_cliente().getReconocimiento_optico().trim(),
-                            " ", " ", " ", " ", " ", " ", bitacora, " ");
+                            " ", " ", " ", " ", " ", " ", bitacora);
 
                     break;
                 case 7:
@@ -309,7 +309,7 @@ public class FimpeINEService {
                             Integer.valueOf(peticion.getDatos_portal().getIdentificador().trim()),
                             peticion.getDatos_cliente().getNombre().trim(), peticion.getDatos_cliente().getApellido_paterno().trim(),
                             peticion.getDatos_cliente().getApellido_materno().trim(), peticion.getDatos_cliente().getReconocimiento_optico().trim(),
-                            peticion.getDatos_cliente().getA_registro().trim(), " ", " ", " ", " ", " ", bitacora, " ");
+                            peticion.getDatos_cliente().getA_registro().trim(), " ", " ", " ", " ", " ", bitacora);
                     break;
                 case 8:
                     resultado.put("codigo", ConstantesFimpeINEUtilities.IDENTIFICACION_CODIGO_CLAVE_UNICA);
@@ -323,7 +323,7 @@ public class FimpeINEService {
                             peticion.getDatos_cliente().getNombre().trim(), peticion.getDatos_cliente().getApellido_paterno().trim(),
                             peticion.getDatos_cliente().getApellido_materno().trim(), peticion.getDatos_cliente().getReconocimiento_optico().trim(),
                             peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
-                            " ", " ", " ", " ", bitacora, " ");
+                            " ", " ", " ", " ", bitacora);
 
                     break;
                 case 9:
@@ -338,7 +338,7 @@ public class FimpeINEService {
                             peticion.getDatos_cliente().getNombre().trim(), peticion.getDatos_cliente().getApellido_paterno().trim(),
                             peticion.getDatos_cliente().getApellido_materno().trim(), peticion.getDatos_cliente().getReconocimiento_optico().trim(),
                             peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
-                            peticion.getDatos_cliente().getClave_unica().trim(), " ", " ", " ", bitacora, " ");
+                            peticion.getDatos_cliente().getClave_unica().trim(), " ", " ", " ", bitacora);
 
                     break;
                 case 10:
@@ -354,7 +354,7 @@ public class FimpeINEService {
                             peticion.getDatos_cliente().getApellido_materno().trim(), peticion.getDatos_cliente().getReconocimiento_optico().trim(),
                             peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                             peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
-                            " ", " ", bitacora, " ");
+                            " ", " ", bitacora);
 
                     break;
                 case 11:
@@ -370,29 +370,10 @@ public class FimpeINEService {
                             peticion.getDatos_cliente().getApellido_materno().trim(), peticion.getDatos_cliente().getReconocimiento_optico().trim(),
                             peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                             peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
-                            peticion.getDatos_cliente().getClave_elector().trim(), " ", bitacora, " ");
+                            peticion.getDatos_cliente().getClave_elector().trim(), " ", bitacora);
 
                     break;
 
-                /*
-                case 12:
-                    resultado.put("codigo", ConstantesFimpeINEUtilities.IDENTIFICACION_CODIGO_ROSTRO);
-                    resultado.put("descripcion", ConstantesFimpeINEUtilities.IDENTIFICACION_DESCRIPCION_ROSTRO);
-                    respuesta.put("resultado", resultado);
-
-                    bitacora = componente.registrar_bitacora(convertir_salida(peticion), new JSONObject(respuesta).toString(), 100);
-
-                    componente.registrar_solicitud(peticion.getDatos_portal().getNombre().trim(),
-                            Integer.valueOf(peticion.getDatos_portal().getIdentificador().trim()),
-                            peticion.getDatos_cliente().getNombre().trim(), peticion.getDatos_cliente().getApellido_paterno().trim(),
-                            peticion.getDatos_cliente().getApellido_materno().trim(), peticion.getDatos_cliente().getReconocimiento_optico().trim(),
-                            peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
-                            peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
-                            peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                            bitacora, " ");
-
-                    break;
-                 */
             }
 
             log.info("SALIDA (JSON): ");
@@ -404,18 +385,6 @@ public class FimpeINEService {
 
         }
 
-        if (validar_usuario == 13) {
-
-            peticion.getDatos_cliente().setRostro1(" ");
-
-        }
-
-        log.info("TAMANO CADENA DE ENTRADA: " + convertir_salida(peticion).length());
-        log.info("TAMANO DEL CAMPO ROSTRO1: " + peticion.getDatos_cliente().getRostro1().length());
-        log.info("");
-        log.info("");
-
-        // Modificacion para obtener parametro
         String parametro = componente.obtener_parametro(PropiedadesFimpeINEUtilities.PARAMETRO_CONFIGURACION_SERVICIO_INE);
 
         log.info("PARAMETRO: ");
@@ -447,7 +416,7 @@ public class FimpeINEService {
                     peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                     peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                     peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                    bitacora, peticion.getDatos_cliente().getRostro1().trim());
+                    bitacora);
 
             return new ResponseEntity(respuesta, HttpStatus.OK);
 
@@ -544,7 +513,7 @@ public class FimpeINEService {
                                                     peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                                    bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                                    bitacora_identificador);
 
                                             componente.registrar_servicio(json.get("codigoRespuesta").toString(), json.get("descripcionRespuesta").toString(),
                                                     json.get("respuestaServicio").toString(), cuerpo, salida, solicitud_identificador, parametros.get(1));
@@ -574,7 +543,7 @@ public class FimpeINEService {
                                                     peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                                    bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                                    bitacora_identificador);
 
                                             componente.registrar_servicio(json.get("codigoRespuesta").toString(), json.get("descripcionRespuesta").toString(),
                                                     json.get("respuestaServicio").toString(), cuerpo, salida, solicitud_identificador, parametros.get(1));
@@ -603,7 +572,7 @@ public class FimpeINEService {
                                                     peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                                    bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                                    bitacora_identificador);
 
                                             componente.registrar_servicio(json.get("codigoRespuesta").toString(), json.get("descripcionRespuesta").toString(),
                                                     json.get("respuestaServicio").toString(), cuerpo, salida, solicitud_identificador, parametros.get(1));
@@ -632,7 +601,7 @@ public class FimpeINEService {
                                                     peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                                    bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                                    bitacora_identificador);
 
                                             componente.registrar_servicio(json.get("codigoRespuesta").toString(), json.get("descripcionRespuesta").toString(),
                                                     json.get("respuestaServicio").toString(), cuerpo, salida, solicitud_identificador, parametros.get(1));
@@ -661,7 +630,7 @@ public class FimpeINEService {
                                                     peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                                     peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                                    bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                                    bitacora_identificador);
 
                                             componente.registrar_servicio(json.get("codigoRespuesta").toString(), json.get("descripcionRespuesta").toString(),
                                                     json.get("respuestaServicio").toString(), cuerpo, salida, solicitud_identificador, parametros.get(1));
@@ -692,9 +661,8 @@ public class FimpeINEService {
                                                 peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                                 peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                                 peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                                bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                                bitacora_identificador);
 
-                                        //Modificacion Excepciones
                                         componente.registrar_servicio("-1", "VALOR CODIGORESPUESTA VACIO",
                                                 "-1", cuerpo, salida, solicitud_identificador, parametros.get(1));
 
@@ -724,9 +692,8 @@ public class FimpeINEService {
                                             peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                             peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                             peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                            bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                            bitacora_identificador);
 
-                                    //Modificacion Excepciones
                                     componente.registrar_servicio("-1", "ETIQUETA CODIGORESPUESTA NO ENCONTRADA",
                                             "-1", cuerpo, salida, solicitud_identificador, parametros.get(1));
 
@@ -756,9 +723,8 @@ public class FimpeINEService {
                                         peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                         peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                         peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                        bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                        bitacora_identificador);
 
-                                //Modificacion Excepciones
                                 componente.registrar_servicio("-1", "ETIQUETA RETURN NO ENCONTRADA",
                                         "-1", cuerpo, salida, solicitud_identificador, parametros.get(1));
 
@@ -788,9 +754,8 @@ public class FimpeINEService {
                                     peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                     peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                     peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                    bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                    bitacora_identificador);
 
-                            //Modificacion Excepciones
                             componente.registrar_servicio("-1", "ETIQUETA VERIFICADATOSRESPONSE NO ENCONTRADA",
                                     "-1", cuerpo, salida, solicitud_identificador, parametros.get(1));
 
@@ -820,9 +785,8 @@ public class FimpeINEService {
                                 peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                                 peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                                 peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                                bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                                bitacora_identificador);
 
-                        //Modificacion Excepciones
                         componente.registrar_servicio("-1", "ETIQUETA BODY NO ENCONTRADA",
                                 "-1", cuerpo, salida, solicitud_identificador, parametros.get(1));
 
@@ -852,9 +816,8 @@ public class FimpeINEService {
                             peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                             peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                             peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                            bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                            bitacora_identificador);
 
-                    //Modificacion Excepciones
                     componente.registrar_servicio("-1", "ETIQUETA ENVELOPE NO ENCONTRADA",
                             "-1", cuerpo, salida, solicitud_identificador, parametros.get(1));
 
@@ -884,9 +847,8 @@ public class FimpeINEService {
                         peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                         peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                         peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                        bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                        bitacora_identificador);
 
-                //Modificacion Excepciones
                 componente.registrar_servicio("-1", "CODIGO DIFERENTE DE 200",
                         "-1", cuerpo, salida, solicitud_identificador, parametros.get(1));
 
@@ -916,9 +878,8 @@ public class FimpeINEService {
                     peticion.getDatos_cliente().getA_registro().trim(), peticion.getDatos_cliente().getA_emision().trim(),
                     peticion.getDatos_cliente().getClave_unica().trim(), peticion.getDatos_cliente().getN_emision().trim(),
                     peticion.getDatos_cliente().getClave_elector().trim(), peticion.getDatos_cliente().getCodigo_identificacion().trim(),
-                    bitacora_identificador, peticion.getDatos_cliente().getRostro1().trim());
+                    bitacora_identificador);
 
-            //Modificacion Excepciones
             componente.registrar_servicio("-2", "EXCEPCION",
                     "-2", cuerpo, e.getMessage(), solicitud_identificador, parametros.get(1));
 
@@ -984,10 +945,6 @@ public class FimpeINEService {
         JSONObject cuerpo = new JSONObject();
 
         cuerpo.put("versionJSON", PropiedadesFimpeINEUtilities.SOLICITUD_IDENTIFICACION);
-        cuerpo.put("tipoFlujo", PropiedadesFimpeINEUtilities.TIPO_FLUJO_IDENTIFICACION);
-        cuerpo.put("modalidad", PropiedadesFimpeINEUtilities.MODALIDAD_IDENTIFICACION);
-        cuerpo.put("pruebaDeVida", PropiedadesFimpeINEUtilities.PRUEBA_VIDA_IDENTIFICACION);
-        cuerpo.put("rostro1", solicitud.getDatos_cliente().getRostro1().trim());
         cuerpo.put("datosCliente", datos_cliente);
         cuerpo.put("datosInstitucion", datos_institucion);
         cuerpo.put("datosMAFI", datos_mafi);
@@ -1040,11 +997,6 @@ public class FimpeINEService {
         JSONObject cuerpo = new JSONObject();
 
         cuerpo.put("versionJSON", PropiedadesFimpeINEUtilities.SOLICITUD_IDENTIFICACION);
-        cuerpo.put("tipoFlujo", PropiedadesFimpeINEUtilities.TIPO_FLUJO_IDENTIFICACION);
-        cuerpo.put("modalidad", PropiedadesFimpeINEUtilities.MODALIDAD_IDENTIFICACION);
-        cuerpo.put("pruebaDeVida", PropiedadesFimpeINEUtilities.PRUEBA_VIDA_IDENTIFICACION);
-        cuerpo.put("rostro1", (solicitud.getDatos_cliente().getRostro1() == null || solicitud.getDatos_cliente().getRostro1().trim().isEmpty())
-                ? " " : solicitud.getDatos_cliente().getRostro1().substring(0, 20));
         cuerpo.put("datosCliente", datos_cliente);
         cuerpo.put("datosInstitucion", datos_institucion);
         cuerpo.put("datosMAFI", datos_mafi);

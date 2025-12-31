@@ -13,7 +13,7 @@ import com.fincomun.identificacion.model.RequestIdentificacionModel;
 @Slf4j
 @RestController
 @RequestMapping(value = "/middleware")
-public class FimpeINEV4Controller {
+public class FimpeINEV3Controller {
 
     @Autowired
     private FimpeINEService servicio;
@@ -23,7 +23,7 @@ public class FimpeINEV4Controller {
 
         log.info("");
         log.info("");
-        log.info("---------- SERVICIO IDENTIFICACION (INE) 4.0 ----------");
+        log.info("---------- SERVICIO IDENTIFICACION (INE) 3.0 ----------");
         log.info("");
         log.info("");
 
