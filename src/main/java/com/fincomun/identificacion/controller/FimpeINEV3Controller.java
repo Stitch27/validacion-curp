@@ -1,6 +1,7 @@
 package com.fincomun.identificacion.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,8 @@ public class FimpeINEV3Controller {
     private FimpeINEService servicio;
 
     @PostMapping("/validar/identificacion")
-    public ResponseEntity<Object> controlador(@RequestBody(required = false) RequestIdentificacionModel peticion) {
+    public ResponseEntity<Object> controlador(@RequestBody(required = false) RequestIdentificacionModel peticion,
+            HttpServletRequest solicitud) {
 
         log.info("");
         log.info("");
@@ -27,7 +29,7 @@ public class FimpeINEV3Controller {
         log.info("");
         log.info("");
 
-        return servicio.servicio(peticion);
+        return servicio.servicio(peticion, (String) solicitud.getAttribute("transaccion"));
 
     }
 

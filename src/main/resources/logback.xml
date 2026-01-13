@@ -39,7 +39,7 @@
             <totalSizeCap>20GB</totalSizeCap>
         </rollingPolicy>
         <encoder>
-            <pattern>%date{ISO8601} ## %X{transaccion_id} - [%F:%L] - %msg%n</pattern>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level  [%X{transaccion:-FINCOMUN}]  %logger{0} - %method : %line - %msg%n</pattern>
         </encoder>
     </appender>
     <logger name="com.fincomun.procesaarchivo" level="debug" additivity="true">

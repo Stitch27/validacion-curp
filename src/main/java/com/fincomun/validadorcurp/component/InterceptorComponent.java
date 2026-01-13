@@ -25,7 +25,9 @@ public class InterceptorComponent implements HandlerInterceptor {
 
         }
 
+        solicitud.setAttribute("transaccion", transaccion);
         MDC.put("transaccion", transaccion);
+
         return true;
 
     }

@@ -62,4 +62,20 @@ public class PropiedadesFimpeINEUtilities {
 
     public static final String SOLICITUD_IDENTIFICACION = ArchivoPropiedadesUtilities.propiedad("valor.version.identificacion.solicitud");
 
+    public static final String VALOR_TIMEPO_ESPERA_SERVICIOS = ArchivoPropiedadesUtilities.propiedad("valor.tiempo.espera.servicios");
+
+    public static final String VALOR_DIRECCION_SERVICIO_VALIDACION_INE = ArchivoPropiedadesUtilities.propiedad("valor.direccion.servicio.validar.ine");
+
+    public static final String VALOR_CODIFICACION_SERVICIOS = ArchivoPropiedadesUtilities.propiedad("valor.codificacion.servicios");
+
+    public static final String VALOR_INSTITUCION_SERVICIO_VALIDACION_INE = ArchivoPropiedadesUtilities.propiedad("valor.institucion.servicio.validar.ine");
+
+    public static final String VALOR_USUARIO_SERVICIO_VALIDACION_INE = ArchivoPropiedadesUtilities.propiedad("valor.usuario.servicio.validar.ine");
+
+    public static final String VALOR_CONTRASENA_SERVICIO_VALIDACION_INE = ArchivoPropiedadesUtilities.propiedad("valor.contrasena.servicio.validar.ine");
+
+    public static final String PROCEDIMIENTO_REGISTRAR_DATOS_INE = ArchivoPropiedadesUtilities.propiedad("procedimiento.registrar.datos.ine");
+
+    public static final String VALOR_CABECERA_SERVICIO_LISTA_NOMINALES = ArchivoPropiedadesUtilities.propiedad("valor.cabecera.servicio.lista.nominales");
+
 }

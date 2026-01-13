@@ -8,6 +8,7 @@ import oracle.jdbc.OracleTypes;
 import lombok.extern.slf4j.Slf4j;
 import java.sql.CallableStatement;
 import org.springframework.stereotype.Component;
+import com.fincomun.identificacion.model.RespuestaValidarIneModel;
 import com.fincomun.identificacion.utilities.ConexionFimpeINEUtilities;
 import com.fincomun.identificacion.utilities.PropiedadesFimpeINEUtilities;
 
@@ -55,6 +56,70 @@ public class ProcedFimpeINEComponent extends ConexionFimpeINEUtilities {
             return 1;
 
         }
+
+    }
+
+    public Integer registrar_datos_ine(String cic, String id_ciudadano, RespuestaValidarIneModel respuesta_servicio, String transaccion) {
+
+        CallableStatement declaracion = null;
+
+        Connection conexion = abrir_conexion();
+
+        if (conexion != null) {
+
+            String consulta = "BEGIN " + PropiedadesFimpeINEUtilities.PAQUETE_PROCEDIMIENTOS + "."
+                    + PropiedadesFimpeINEUtilities.PROCEDIMIENTO_REGISTRAR_DATOS_INE
+                    + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); END;";
+
+            try {
+
+                declaracion = conexion.prepareCall(consulta);
+
+                declaracion.setString(1, transaccion);
+                declaracion.setString(2, cic);
+                declaracion.setString(3, id_ciudadano);
+                declaracion.setString(4, respuesta_servicio.getReferencia());
+                declaracion.setString(5, PropiedadesFimpeINEUtilities.VALOR_INSTITUCION_SERVICIO_VALIDACION_INE);
+                declaracion.setString(6, respuesta_servicio.getFecha());
+                declaracion.setString(7, respuesta_servicio.getEstatus());
+                declaracion.setString(8, respuesta_servicio.getMensaje());
+                declaracion.setString(9, respuesta_servicio.getCodigoValidacion());
+                declaracion.setString(10, respuesta_servicio.getClaveMensaje());
+                declaracion.setString(11, respuesta_servicio.getClaveElector());
+                declaracion.setString(12, respuesta_servicio.getNumeroEmision());
+                declaracion.setString(13, respuesta_servicio.getAnioRegistro());
+                declaracion.setString(14, respuesta_servicio.getAnioEmision());
+                declaracion.setString(15, respuesta_servicio.getVigencia());
+                declaracion.setString(16, respuesta_servicio.getOcr());
+                declaracion.setString(17, respuesta_servicio.getCic());
+                declaracion.setString(18, respuesta_servicio.getDistritoFederal());
+                declaracion.setString(19, respuesta_servicio.getInformacionAdicional());
+
+                declaracion.registerOutParameter(20, OracleTypes.NUMBER);
+                declaracion.execute();
+
+                Integer resultado = declaracion.getInt(20);
+                cerrar_conexion(declaracion, conexion);
+
+                return resultado;
+
+            } catch (Exception e) {
+
+                cerrar_conexion(declaracion, conexion);
+
+                log.error("ERROR AL REGISTRAR DATOS INE");
+                log.error("");
+                log.error(e.getMessage());
+                log.error("");
+                log.error("");
+
+                return 2;
+
+            }
+
+        }
+
+        return 2;
 
     }
 

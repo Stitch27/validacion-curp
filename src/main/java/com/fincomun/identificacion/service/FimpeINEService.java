@@ -18,6 +18,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.fincomun.identificacion.utilities.FimpeINEUtilities;
+import com.fincomun.identificacion.component.ServiciosComponent;
+import com.fincomun.identificacion.model.RespuestaValidarIneModel;
 import com.fincomun.identificacion.model.RequestIdentificacionModel;
 import com.fincomun.identificacion.component.ProcedFimpeINEComponent;
 import com.fincomun.identificacion.utilities.ConstantesFimpeINEUtilities;
@@ -31,9 +33,12 @@ public class FimpeINEService {
     private FimpeINEUtilities utilidades;
 
     @Autowired
+    private ServiciosComponent servicios;
+
+    @Autowired
     private ProcedFimpeINEComponent componente;
 
-    public ResponseEntity<Object> servicio(RequestIdentificacionModel peticion) {
+    public ResponseEntity<Object> servicio(RequestIdentificacionModel peticion, String transaccion) {
 
         HashMap<String, String> resultado = new LinkedHashMap<>();
         HashMap<String, Object> respuesta = new LinkedHashMap<>();
@@ -394,16 +399,106 @@ public class FimpeINEService {
 
         if (parametro.equals("true")) {
 
-            log.info("NO SE EJECUTA EL SERVICIO DE FIMPE");
+            log.info("SE EJECUTA EL SERVICIO DE LISTA NOMINALES");
             log.info("");
             log.info("");
 
-            resultado.put("codigo", ConstantesFimpeINEUtilities.IDENTIFICACION_CODIGO_EXITO);
-            resultado.put("descripcion", ConstantesFimpeINEUtilities.IDENTIFICACION_DESCRIPCION_EXITO);
-            respuesta.put("resultado", resultado);
+            String cic = peticion.getDatos_cliente().getCodigo_identificacion().trim();
+
+            if (cic.length() > 9) {
+
+                cic = cic.substring(0, 9);
+
+            }
+
+            String id_ciudadano = peticion.getDatos_cliente().getReconocimiento_optico().trim();
+
+            if (id_ciudadano.length() > 9) {
+
+                id_ciudadano = id_ciudadano.substring(id_ciudadano.length() - 9);
+
+            }
+
+            log.info("DATOS SERVICIO LISTA NOMINALES: ");
+            log.info("");
+            log.info("CIC: " + cic);
+            log.info("ID CIUDADANO: " + id_ciudadano);
+            log.info("");
+            log.info("");
+
+            RespuestaValidarIneModel respuesta_servicio = servicios.servicio_validar_ine(cic, id_ciudadano);
+
+            if (Objects.isNull(respuesta_servicio)) {
+
+                resultado.put("codigo", "130");
+                resultado.put("descripcion", "No fue posible ejecutar de forma correcta el servicio de validación INE.");
+                respuesta.put("resultado", resultado);
+
+                log.info("SALIDA (JSON): ");
+                log.info("");
+                log.info(new JSONObject(respuesta).toString());
+                log.info("");
+                log.info("");
+
+                return new ResponseEntity(respuesta, HttpStatus.CONFLICT);
+
+            }
+
+            Integer registrar = componente.registrar_datos_ine(cic, id_ciudadano, respuesta_servicio, transaccion);
+
+            if (registrar != 0) {
+
+                resultado.put("codigo", "131");
+                resultado.put("descripcion", "No fue posible registrar la información en base de datos.");
+                respuesta.put("resultado", resultado);
+
+                log.info("SALIDA (JSON): ");
+                log.info(new JSONObject(respuesta).toString());
+                log.info("");
+                log.info("");
+
+                return new ResponseEntity(respuesta, HttpStatus.CONFLICT);
+
+            }
+
+            if (!respuesta_servicio.getClaveMensaje().equals("3")) {
+
+                resultado.put("codigo", "132");
+                resultado.put("descripcion", "Petición no válida.");
+                respuesta.put("resultado", resultado);
+
+            } else {
+
+                resultado.put("codigo", "100");
+                resultado.put("descripcion", "Petición realizada con éxito.");
+                respuesta.put("resultado", resultado);
+
+            }
+
+            HashMap<String, Object> datos = new LinkedHashMap<>();
+            datos.put("estatus", respuesta_servicio.getEstatus());
+            datos.put("mensaje", respuesta_servicio.getMensaje());
+            datos.put("codigoValidacion", respuesta_servicio.getCodigoValidacion());
+            datos.put("claveMensaje", respuesta_servicio.getClaveMensaje());
+            datos.put("claveElector", respuesta_servicio.getClaveElector());
+            datos.put("numeroEmision", respuesta_servicio.getNumeroEmision());
+            datos.put("anioRegistro", respuesta_servicio.getAnioRegistro());
+            datos.put("anioEmision", respuesta_servicio.getAnioEmision());
+            datos.put("vigencia", respuesta_servicio.getVigencia());
+            datos.put("ocr", respuesta_servicio.getOcr());
+            datos.put("cic", respuesta_servicio.getCic());
+            datos.put("distritoFederal", respuesta_servicio.getDistritoFederal());
+            datos.put("informacionAdicional", respuesta_servicio.getInformacionAdicional());
+
+            respuesta.put("datos", datos);
+            respuesta.put("transaccion", transaccion);
 
             log.info("SALIDA (JSON): ");
             log.info(new JSONObject(respuesta).toString());
+            log.info("");
+            log.info("");
+
+            log.info("REGISTROS EN BITACORA TRADICIONAL");
             log.info("");
             log.info("");
 

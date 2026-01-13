@@ -1,7 +1,9 @@
 package com.fincomun.procesaarchivo.service;
 
 import com.fincomun.procesaarchivo.model.*;
-import com.fincomun.validadorcurp.component.ConsultasClaveComponent;
+import com.fincomun.procesaarchivo.repository.GuardaBitacoraRepository;
+import com.fincomun.procesaarchivo.repository.GuardaServicioRepository;
+import com.fincomun.procesaarchivo.repository.GuardaSolicitudRepository;
 import com.fincomun.validadorcurp.utilities.PropiedadesUtilities;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,13 @@ import java.util.List;
 public class ProcesaArchivoService {
 
     @Autowired
-    private ConsultasClaveComponent consultasClaveComponent;
+    private GuardaBitacoraRepository guardaBitacoraRepository;
+
+    @Autowired
+    private GuardaSolicitudRepository guardaSolicitudRepository;
+
+    @Autowired
+    private GuardaServicioRepository guardaServicioRepository;
 
     @Async
     public void procesaContenidoArchivo(String nombreArchivo) {
@@ -77,7 +85,7 @@ public class ProcesaArchivoService {
             int successCount = 0;
             int totalCount = 0;
             int curpVacio = 0;
-            for (ContenidoArchivo fila: contenidoArchivoList) {
+            for (ContenidoArchivo fila : contenidoArchivoList) {
                 JsonRespuesta respuesta = tranformaJson(fila.getJsonRespuesta());
                 if (respuesta == null) {
                     log.error("-4, error al transformar json");
@@ -99,10 +107,16 @@ public class ProcesaArchivoService {
 
                 log.info("Registrando en bitacora");
 
-                Integer idBitacora = consultasClaveComponent
-                        .registrar_bitacora_renapo(peticionRenapoJson.toString(), fila.getJsonRespuesta(), estado);
+                // Integer idBitacora = consultasClaveComponent
+                //         .registrar_bitacora_renapo(peticionRenapoJson.toString(), fila.getJsonRespuesta(), estado);
+                Integer idBitacora = guardaBitacoraRepository.guardarBitacora(peticionRenapoJson.toString(), fila.getJsonRespuesta(), estado);
 
                 log.info("idBitacora: " + idBitacora);
+
+                if (idBitacora == -1) {
+                    log.error("error al guardar en bitacora");
+                    continue;
+                }
 
                 if (fila.getCurp() == null || fila.getCurp().isEmpty()) {
                     log.error("curp vacio");
@@ -110,15 +124,28 @@ public class ProcesaArchivoService {
                     continue;
                 }
 
-                Integer idPeticion = consultasClaveComponent
-                        .registrar_solicitud_renapo("Masivos", 106, fila.getCurp(), idBitacora);
+                // Integer idPeticion = consultasClaveComponent
+                //         .registrar_solicitud_renapo("Masivos", 106, fila.getCurp(), idBitacora);
+                Integer idPeticion = guardaSolicitudRepository.guardarSolicitud("Masivos", 106, fila.getCurp(), idBitacora);
 
                 log.info("idPeticion: " + idPeticion);
 
-                Integer idServicio = consultasClaveComponent
-                        .registrar_servicio_renapo(respuesta.getCodigoRespuesta(), respuesta.getDescripcionRespuesta(), respuesta.getReferencia(), " ", " ", idPeticion);
+                if (idPeticion == -1) {
+                    log.error("error al guardar en solicitud");
+                    continue;
+                }
+
+                // Integer idServicio = consultasClaveComponent
+                //         .registrar_servicio_renapo(respuesta.getCodigoRespuesta(), respuesta.getDescripcionRespuesta(), respuesta.getReferencia(), " ", " ", idPeticion);
+                Integer idServicio = guardaServicioRepository
+                        .guardarServicio(respuesta.getCodigoRespuesta(), respuesta.getDescripcionRespuesta(), respuesta.getReferencia(), " ", " ", idPeticion);
 
                 log.info("idServicio: " + idServicio);
+
+                if (idServicio == -1) {
+                    log.error("error al guardar en servicio");
+                    continue;
+                }
             }
             int erroresReales = errorCount - curpVacio;
             log.info("Numero de registros: " + totalCount);
