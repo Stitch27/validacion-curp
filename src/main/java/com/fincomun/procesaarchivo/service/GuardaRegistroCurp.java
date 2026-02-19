@@ -24,8 +24,12 @@ public class GuardaRegistroCurp {
         
         RegistraArchivoSPResponse response = guardaRegistroRenapo.guardarRegistroRenapo(dto);
 
-        if (response.getCodigoOut() == -1) {
-            log.error("Error al guardar registro: {}", response.getMensajeOut());
+        if (response.getCodigoOut() == 1) {
+            log.info(response.getMensajeOut());
+        } else if (response.getCodigoOut() == 0) {
+            log.info(response.getMensajeOut());
+        } else if (response.getCodigoOut() == -1) {
+            log.error(response.getMensajeOut());
             throw new RuntimeException(response.getMensajeOut());
         }
 

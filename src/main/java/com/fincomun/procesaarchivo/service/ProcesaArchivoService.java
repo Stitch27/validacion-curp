@@ -171,6 +171,7 @@ public class ProcesaArchivoService {
         if (contenidoArchivoList == null || contenidoArchivoList.isEmpty()) {
             log.error("-1, archivo en blanco");
         } else {
+            int errorConversion = 0;
             int errorCount = 0;
             int successCount = 0;
             int totalCount = 0;
@@ -189,7 +190,7 @@ public class ProcesaArchivoService {
                 JsonRespuesta respuesta = tranformaJson(fila.getJsonRespuesta());
                 if (respuesta == null) {
                     log.error("Fila {}: error al transformar json", totalCount);
-                    errorCount++;
+                    errorConversion++;
                     continue;
                 }
 
@@ -222,13 +223,14 @@ public class ProcesaArchivoService {
                 try {
                     guardaRegistroCurp.guardaRegistroCurp(rArchivoDto);
                 } catch (Exception e) {
-                    log.error("Falla persistencia fila {}: {}", totalCount, e.getMessage());
+                    log.error("Falla persistencia fila {}: {}", fila.getCurp(), e.getMessage());
                     dataBaseError++;
                 }
             }
             log.info("Numero de registros: " + totalCount);
             log.info("Exitos (Negocio): " + successCount);
             log.info("Errores (Negocio): " + errorCount);
+            log.info("Errores de conversion JSON: " + errorConversion);
             log.info("CURPs Vacíos (No procesados): " + curpVacio);
             log.info("Errores de persistencia (BD): " + dataBaseError);
         }
