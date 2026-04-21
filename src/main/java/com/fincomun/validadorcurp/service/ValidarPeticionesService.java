@@ -1,5 +1,6 @@
 package com.fincomun.validadorcurp.service;
 
+import java.util.List;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.LinkedHashMap;
@@ -12,7 +13,6 @@ import com.fincomun.validadorcurp.model.ValidarPeticionesModel;
 import com.fincomun.validadorcurp.component.ConsultasClaveComponent;
 import com.fincomun.validadorcurp.utilities.ValidarPeticionesUtilities;
 import com.fincomun.validadorcurp.utilities.ConstantesValidarPeticionesUtilities;
-import java.util.List;
 
 @Service
 public class ValidarPeticionesService {

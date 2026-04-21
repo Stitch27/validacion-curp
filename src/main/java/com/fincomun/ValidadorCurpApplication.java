@@ -1,8 +1,8 @@
 package com.fincomun;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,13 +18,11 @@ public class ValidadorCurpApplication extends SpringBootServletInitializer imple
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 
         return builder.sources(ValidadorCurpApplication.class);
-
     }
 
     public static void main(String[] args) {
 
         SpringApplication.run(ValidadorCurpApplication.class, args);
-
     }
 
 }

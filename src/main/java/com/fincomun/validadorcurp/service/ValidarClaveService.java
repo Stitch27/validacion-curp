@@ -909,27 +909,27 @@ public class ValidarClaveService {
 
         JSONObject datos_cliente = new JSONObject();
         datos_cliente.put("curp", (informacion.get("clave_unica") + "").trim());
-        
+
         // Modificacion para obtener parametro
         String parametro = componente.obtener_parametro(PropiedadesUtilities.PARAMETRO_CONFIGURACION_SERVICIO_CURP);
-        
+
         log.info("Parametro: ");
         log.info(parametro);
         log.info("");
         log.info("");
-        
-        if(parametro.equals("true")){
-            
+
+        if (parametro.equals("true")) {
+
             log.info("Modificar CURP.");
             log.info("");
             log.info("");
-            
+
             String curp = componente.obtener_parametro(PropiedadesUtilities.PARAMETRO_DINAMICO_CURP);
-            
+
             datos_cliente.put("curp", curp);
-            
+
         }
-        
+
         JSONObject datos_institucion = new JSONObject();
         LocalDateTime tiempo = LocalDateTime.now();
         datos_institucion.put("idInstitucion", PropiedadesUtilities.INSTITUCION_CLAVE);

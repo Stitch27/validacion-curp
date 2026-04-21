@@ -30,20 +30,7 @@
     <logger name="com.fincomun.identificacion" level="debug" additivity="true">
         <appender-ref ref="FILE-ROLLING-IDENTIFICACION"/>
     </logger>
-    <property name="HOME_LOG_PROCESAARCHIVO" value="validadorcurp/logs/procesaarchivo.log"/>
-    <appender name="FILE-ROLLING-PROCESAARCHIVO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${HOME_LOG_PROCESAARCHIVO}</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>validadorcurp/logs/archived/procesaarchivo.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <maxFileSize>20MB</maxFileSize>
-            <totalSizeCap>20GB</totalSizeCap>
-        </rollingPolicy>
-        <encoder>
-            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level  [%X{transaccion:-FINCOMUN}]  %logger{0} - %method : %line - %msg%n</pattern>
-        </encoder>
-    </appender>
-    <logger name="com.fincomun.procesaarchivo" level="debug" additivity="true">
-        <appender-ref ref="FILE-ROLLING-PROCESAARCHIVO"/>
-    </logger>
+    
     <root level="debug"/>
+    
 </configuration>
