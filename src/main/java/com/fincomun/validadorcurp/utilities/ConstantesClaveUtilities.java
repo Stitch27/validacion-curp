@@ -106,12 +106,11 @@ public class ConstantesClaveUtilities {
 
     public static final String CODIGO_CAMPO_RETURN = "130";
     public static final String DESCRIPCION_CAMPO_RETURN = "No fue posible encontrar el campo de return.";
-    
-    
+
     //Modificacion Excepciones
     public static final String CODIGO_RESPUESTA_EXCEPCION = "7";
     public static final String DESCRIPCION_RESPUESTA_EXCEPCION = "Por favor de reintentar nuevamente.";
-    
+
     public static final String CODIGO_RESPUESTA_FALLIDO = "8";
     public static final String DESCRIPCION_RESPUESTA_FALLIDO = "Error en campos de salida.";
 

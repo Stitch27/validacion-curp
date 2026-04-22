@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class ProcesoIdentificacionModel {
-    
-     private String identificador_portal;
+
+    private String identificador_portal;
 
     private String nombre_portal;
-    
+
     private String nombre;
 
     private String apellido_paterno;
@@ -28,5 +28,5 @@ public class ProcesoIdentificacionModel {
     private String clave_elector;
 
     private String codigo_identificacion;
-    
+
 }

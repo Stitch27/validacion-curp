@@ -106,23 +106,7 @@ public class FimpeINEUtilities {
 
                                                                                         if (!solicitud.getDatos_cliente().getCodigo_identificacion().isEmpty()) {
 
-                                                                                            if (Objects.nonNull(solicitud.getDatos_cliente().getRostro1())) {
-
-                                                                                                if (!solicitud.getDatos_cliente().getRostro1().isEmpty()) {
-
-                                                                                                    return 0;
-
-                                                                                                } else {
-
-                                                                                                    return 13;
-
-                                                                                                }
-
-                                                                                            } else {
-
-                                                                                                return 13;
-
-                                                                                            }
+                                                                                            return 0;
 
                                                                                         } else {
 

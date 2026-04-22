@@ -25,6 +25,4 @@ public class DatosClienteModel {
 
     private String codigo_identificacion;
 
-    private String rostro1;
-
 }

@@ -1,7 +1,7 @@
 package com.fincomun.validadorcurp.model;
 
-import com.fincomun.identificacion.model.PortalModel;
 import lombok.Data;
+import com.fincomun.identificacion.model.PortalModel;
 
 @Data
 public class ClaveModel {

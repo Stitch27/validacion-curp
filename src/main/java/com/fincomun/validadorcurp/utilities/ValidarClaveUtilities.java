@@ -1,20 +1,9 @@
 package com.fincomun.validadorcurp.utilities;
 
-import java.util.Objects;
+import org.json.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import com.fincomun.validadorcurp.model.ClaveModel;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
 
 @Slf4j
 @Component
@@ -61,7 +50,7 @@ public class ValidarClaveUtilities {
     public Integer validar_portal(JSONObject solicitud) {
 
         if (solicitud.has("datos_portal")) {
-            
+
             JSONObject portal = new JSONObject(solicitud.get("datos_portal").toString());
 
             if (portal.has("identificador")) {
@@ -115,10 +104,9 @@ public class ValidarClaveUtilities {
     }
 
     public Integer validar_cliente(JSONObject solicitud) {
-        
 
         if (solicitud.has("datos_cliente")) {
-            
+
             JSONObject cliente = new JSONObject(solicitud.get("datos_cliente").toString());
 
             if (cliente.has("clave_unica")) {
@@ -146,7 +134,6 @@ public class ValidarClaveUtilities {
         }
 
     }
-
 
     public Integer validar_peticiones(Integer permitidas, Integer realizadas) {
 

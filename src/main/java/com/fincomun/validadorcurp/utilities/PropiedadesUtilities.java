@@ -11,9 +11,9 @@ public class PropiedadesUtilities {
     public static final String PROCEDIMIENTO_REGISTRARSOLICITUD = ArchivoPropiedadesUtilities.propiedad("valor.procedimiento.registrarsolicitud");
 
     public static final String PROCEDIMIENTO_REGISTRARSERVICIO = ArchivoPropiedadesUtilities.propiedad("valor.procedimiento.registrarservicio");
-    
+
     public static final String PROCEDIMIENTO_OBTENERCONFIGURACION = ArchivoPropiedadesUtilities.propiedad("valor.procedimiento.obtenerconfiguracion");
-    
+
     public static final String PROCEDIMIENTO_ACTUALIZARPETICIONES = ArchivoPropiedadesUtilities.propiedad("valor.procedimiento.actualizarpeticiones");
 
     public static final String CABECERA_CLAVE = ArchivoPropiedadesUtilities.propiedad("valor.servicio.cabecera.claveunica");
@@ -75,29 +75,29 @@ public class PropiedadesUtilities {
     public static final String USBADA = ArchivoPropiedadesUtilities.propiedad("valor.usbada");
 
     public static final String COBADA = ArchivoPropiedadesUtilities.propiedad("valor.cobada");
-    
+
     public static final String DIRECCION_CLAVES = ArchivoPropiedadesUtilities.propiedad("valor.archivo.direccion.claves");
-    
+
     public static final String DIRECCION_IDENTIFICACIONES = ArchivoPropiedadesUtilities.propiedad("valor.archivo.direccion.identificaciones");
-    
+
     public static final String NOMBRE_CLAVES = ArchivoPropiedadesUtilities.propiedad("valor.archivo.nombre.claves");
-    
+
     public static final String NOMBRE_IDENTIFICACIONES = ArchivoPropiedadesUtilities.propiedad("valor.archivo.nombre.identificaciones");
-    
+
     public static final String TIPO_FLUJO_IDENTIFICACION = ArchivoPropiedadesUtilities.propiedad("valor.tipo.flujo.identificaciones");
-    
+
     public static final String MODALIDAD_IDENTIFICACION = ArchivoPropiedadesUtilities.propiedad("valor.modalidad.identificaciones");
-    
+
     public static final String PRUEBA_VIDA_IDENTIFICACION = ArchivoPropiedadesUtilities.propiedad("valor.prueba.vida.identificaciones");
-    
+
     public static final String PROCEDIMIENTO_BITACORA_RENAPO = ArchivoPropiedadesUtilities.propiedad("valor.procedimiento.bitacorarenapo");
-    
+
     public static final String PROCEDIMIENTO_SOLICITUD_RENAPO = ArchivoPropiedadesUtilities.propiedad("valor.procedimiento.solicitudrenapo");
-    
+
     public static final String PROCEDIMIENTO_SERVICIO_RENAPO = ArchivoPropiedadesUtilities.propiedad("valor.procedimiento.serviciorenapo");
-    
+
     public static final String RUTA_ARCHIVO_PROCESAR = ArchivoPropiedadesUtilities.propiedad("valor.procesa.archivo.servicio");
-    
+
     // Modificacion para obtener parametro
     public static final String PROCEDIMIENTO_OBTENER_PARAMETRO = ArchivoPropiedadesUtilities.propiedad("valor.procedimiento.obtener.parametro");
     public static final String PARAMETRO_CONFIGURACION_SERVICIO_INE = ArchivoPropiedadesUtilities.propiedad("valor.parametro.configuracion.servicio.ine");

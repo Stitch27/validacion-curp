@@ -3,8 +3,10 @@ package com.fincomun.identificacion.utilities;
 import java.util.Hashtable;
 import javax.naming.Context;
 import javax.sql.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import javax.naming.InitialContext;
 
+@Slf4j
 public class LocadorFimpeINEUtilities {
 
     private static LocadorFimpeINEUtilities instancia;
@@ -40,6 +42,7 @@ public class LocadorFimpeINEUtilities {
 
         } catch (Exception e) {
 
+            log.error("EXCEPCION AL CONSULTAR LA INFORMACION DE LA BASE DE DATOS ", e);
             return null;
 
         }
