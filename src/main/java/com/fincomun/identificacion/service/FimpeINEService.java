@@ -222,6 +222,15 @@ public class FimpeINEService {
 
         }
 
+        if (Objects.isNull(peticion.getDatos_cliente().getApellido_materno())
+                || peticion.getDatos_cliente().getApellido_materno().trim().isEmpty()) {
+
+            log.info("SE AGREGA EL VALOR DE (X) AL APELLIDO MATERNO");
+            log.info("");
+            log.info("");
+            peticion.getDatos_cliente().setApellido_materno("X");
+        }
+
         Integer validar_usuario = utilidades.validar_cliente(peticion);
 
         Integer bitacora;
