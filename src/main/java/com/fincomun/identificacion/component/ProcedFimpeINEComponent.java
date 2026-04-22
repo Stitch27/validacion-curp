@@ -24,12 +24,6 @@ public class ProcedFimpeINEComponent extends ConexionFimpeINEUtilities {
 
         } catch (Exception e) {
 
-            log.error("EXEPCION AL ABRIR LA CONEXION DE BASE DE DATOS");
-            log.error("");
-            log.error(e.getMessage());
-            log.error("");
-            log.error("");
-
             return null;
 
         }
